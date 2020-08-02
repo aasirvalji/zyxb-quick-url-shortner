@@ -12,11 +12,20 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 router.post('/shorten', async (req, res) => {
   var longUrl = req.body.url;
   var baseUrl = process.env.devUrl;
+  var idRegenerationAttempts = 0;
 
   if (!validUrl.isUri(baseUrl))
     return res.status(400).json({ message: 'Invalid base url' });
 
-  var shortCode = shortid.generate();
+  var shortCode = nanoid(5);
+
+  var duplicate = await Url.findOne({ shortCode });
+
+  while (duplicate && idRegenerationAttempts < 5) {
+    shortCode = nanoid(5);
+    duplicate = await Url.findOne({ shortCode });
+    idRegenerationAttempts++;
+  }
 
   if (!validUrl.isUri(longUrl))
     return res.status(400).json({ message: 'Invalid long url' });
@@ -42,8 +51,13 @@ router.post('/shorten', async (req, res) => {
   }
 });
 
-router.get('/', (req, res) => {
-  console.log(nanoid(5));
+router.get('/', async (req, res) => {
+  console.log('reached');
+  var shortCode = nanoid(5);
+
+  var temp = 0;
+
+  var duplicate = await Url.findOne({ shortCode });
 });
 
 module.exports = router;
