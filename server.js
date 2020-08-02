@@ -3,12 +3,14 @@ const colors = require('colors');
 const express = require('express');
 const path = require('path');
 const connectDB = require('./config/db');
+var cors = require('cors');
 
 const app = express();
 
 connectDB();
 
 app.use(express.json());
+app.use(cors());
 
 // redirect route
 app.use('/', require('./routes/v1'));

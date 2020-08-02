@@ -5,6 +5,7 @@ const path = require('path');
 const validUrl = require('valid-url');
 const shortid = require('shortid');
 const Url = require('../../models/Url');
+const { nanoid } = require('nanoid');
 
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
@@ -39,6 +40,10 @@ router.post('/shorten', async (req, res) => {
     console.error(err.message);
     res.status(500).json({ message: 'Server error' });
   }
+});
+
+router.get('/', (req, res) => {
+  console.log(nanoid(5));
 });
 
 module.exports = router;
