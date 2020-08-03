@@ -8,21 +8,43 @@ import { set } from 'mongoose';
 
 function App() {
   const [urlInput, setUrlInput] = useState(null);
-  const [shortUrl, setShortUrl] = useState();
+  const [shortUrl, setShortUrl] = useState(null);
 
   const createShortUrl = () => {
-    axios.post('/api/url/shorten', { url: urlInput }).then((res) => {
-      setShortUrl(res);
-      console.log(res);
-    });
+    if (urlInput) {
+      if (
+        urlInput.match(
+          /https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}/
+        )
+      ) {
+        axios.post('/api/url/shorten', { url: urlInput }).then((res) => {
+          console.log(res.data);
+          setShortUrl(res.data.shortUrl);
+        });
+      } else {
+        alert('invalid url');
+      }
+    } else {
+      alert('empty url');
+    }
+  };
+
+  const clearFields = () => {
+    setUrlInput('');
+    setShortUrl(null);
   };
 
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          <input onChange={(e) => setUrlInput(e.target.value)}></input>
-          <button onClick={() => createShortUrl()}>YEET</button>
+          <input
+            value={urlInput}
+            onChange={(e) => setUrlInput(e.target.value)}
+          ></input>
+          <button onClick={() => createShortUrl()}>Generate Url</button>
+          <p>{shortUrl}</p>
+          <button onClick={() => clearFields()}>Clear Fields</button>
         </Route>
       </Switch>
     </Router>
