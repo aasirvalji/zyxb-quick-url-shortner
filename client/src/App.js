@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { set } from 'mongoose';
+import Heading from './components/Heading/Heading';
 
 function App() {
   const [urlInput, setUrlInput] = useState(null);
@@ -38,6 +39,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
+          <Heading></Heading>
           <input
             value={urlInput}
             onChange={(e) => setUrlInput(e.target.value)}

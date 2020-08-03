@@ -1,0 +1,52 @@
+/* start heading container */
+
+.heading-container {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  background-image: url(/liteboardLandingBGlightinverse2.png);
+  height: auto;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+}
+
+.icon {
+  border-radius: 5px;
+  width: 15rem;
+  height: 7.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-image: linear-gradient(to left, #393f4d, #091f36);
+  transition: 1.5s;
+  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.65),
+    0 15px 12px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.65), 0 15px 12px rgba(0, 0, 0, 0.55);
+}
+
+.icon h2 {
+  font-weight: 300;
+}
+
+.icon:hover {
+  transform: scale(0.8);
+  transition: 1.5s;
+  border-radius: 20% 30% 23% 70% / 40% 80% 20% 33%;
+  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.65),
+    0 15px 12px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.65), 0 15px 12px rgba(0, 0, 0, 0.55);
+}
+
+.icon:hover i {
+  transform: scale(1.8);
+  transition: 1.5s;
+}
+
+@media only screen and (max-width: 670px) {
+}
+
+/* end heading container */
