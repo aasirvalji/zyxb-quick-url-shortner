@@ -7,6 +7,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { set } from 'mongoose';
 import Heading from './components/Heading/Heading';
 
+//material ui imports
+import Button from '@material-ui/core/Button';
+import CropFreeIcon from '@material-ui/icons/CropFree';
+
 function App() {
   const [urlInput, setUrlInput] = useState(null);
   const [shortUrl, setShortUrl] = useState(null);
@@ -40,13 +44,32 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Heading></Heading>
-          <input
-            value={urlInput}
-            onChange={(e) => setUrlInput(e.target.value)}
-          ></input>
-          <button onClick={() => createShortUrl()}>Generate Url</button>
-          <p>{shortUrl}</p>
-          <button onClick={() => clearFields()}>Clear Fields</button>
+          <div className="main-container">
+            <input
+              id="url-input"
+              value={urlInput}
+              onChange={(e) => setUrlInput(e.target.value)}
+            />
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => createShortUrl()}
+              startIcon={<CropFreeIcon />}
+              id="submit-url"
+            >
+              Generate Url
+            </Button>
+          </div>
+
+          <div className="clear-fields-container">
+            <button onClick={() => clearFields()} id="clear-fields">
+              Clear Fields
+            </button>
+          </div>
+
+          <div className="short-url-container">
+            <p>{shortUrl}</p>
+          </div>
         </Route>
       </Switch>
     </Router>
