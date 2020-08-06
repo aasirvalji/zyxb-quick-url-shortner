@@ -86,7 +86,8 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Heading></Heading>
-          <div className="main-container">
+          <div className='main-container'>
+          <div className="input-container">
             <input
               id="url-input"
               value={urlInput}
@@ -94,9 +95,10 @@ function App() {
             />
             <Button
               variant="contained"
-              color="secondary"
               onClick={() => createShortUrl()}
               startIcon={<CropFreeIcon />}
+              style={{backgroundColor: '#1B36E1', color: 'white'}}
+              className='ui-btn'
               id="submit-url"
             >
               Generate Url
@@ -106,34 +108,33 @@ function App() {
           <div className="clear-fields-container">
           <Button
               variant="contained"
-              color="secondary"
               onClick={() => clearFields()} 
               startIcon={<HighlightOffIcon />}
+              style={{backgroundColor: '#1B36E1', color: 'white'}}
               id="clear-fields">
               Clear Entry
             </Button>
           </div>
-      
+          </div>
           <div className="result-container">
-          <h1>Shortened Url</h1>
             {!(shortUrls === undefined || shortUrls.length == 0) && 
             <>
             <div className='result-content'>
             <div className='first-short-url-and-copy'>
             <p>
               Short Url: <b>{shortUrls[0]}</b>
-              {/* shorturl length: {shortUrls.length} */}
             </p>
             <Button
               variant="contained"
-              color="secondary"
               startIcon={<AssignmentIcon />}
+              className='ui-btn'
+              style={{backgroundColor: '#1B36E1', color: 'white'}}
               onClick={() => copyToClipboard(shortUrls[0])}
               id="clipboard">
               Copy
             </Button>
             </div>
-            <div className='long-short-url'>
+            <div className='long-short-url' id={longUrls.length < 2 && 'first-recent-url'}>
             <p>
               Long Url: <b>{longUrls[0]}</b>
               {/* longurl length: {longUrls.length} */}
@@ -142,7 +143,6 @@ function App() {
             {(shortUrls.length > 1 && longUrls.length > 1) && <Divider style={{backgroundColor: 'white'}} className='divider'/>}
             </div>
 
-            <h1>Recent Url's</h1>
             <div className='recent-urls-container'>
             {!(shortUrls === undefined || shortUrls.length < 2) && 
             <div className='recent-content'>
@@ -157,7 +157,8 @@ function App() {
             </p>
             <Button
               variant="contained"
-              color="secondary"
+              className='ui-btn'
+              style={{backgroundColor: '#1B36E1', color: 'white'}}
               startIcon={<AssignmentIcon />}
               id="clipboard"
               onClick={() => copyToClipboard(shortUrl)}
