@@ -24,8 +24,17 @@ function App() {
         )
       ) {
         axios.post('/api/url/shorten', { url: urlInput }).then((res) => {
-          if (shortUrls.length > 4) setShortUrls(state => state.slice(0,2))
-          if (longUrls.length > 4) setShortUrls(state => state.slice(0,2))
+          if (shortUrls.length > 2) {
+            var longUrl = shortUrls.slice(0,3)
+            setShortUrls(longUrls)
+          }
+          if (longUrls.length > 2) 
+          {
+            let lu = [...longUrls]
+            lu = lu.slice(0, 2)
+            setLongUrls(lu)
+          }
+          console.log(shortUrls, longUrls)
           setShortUrls(state => [res.data.shortUrl, ...state]);
           setLongUrls(state => [res.data.longUrl, ...state]);
         });
