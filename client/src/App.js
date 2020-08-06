@@ -13,7 +13,8 @@ import CropFreeIcon from '@material-ui/icons/CropFree';
 
 function App() {
   const [urlInput, setUrlInput] = useState(null);
-  const [shortUrl, setShortUrl] = useState(null);
+  const [shortUrls, setShortUrls] = useState([]);
+  const [longUrls, setLongUrls] = useState([]);
 
   const createShortUrl = () => {
     if (urlInput) {
@@ -23,9 +24,13 @@ function App() {
         )
       ) {
         axios.post('/api/url/shorten', { url: urlInput }).then((res) => {
-          console.log(res.data);
-          setShortUrl(res.data.shortUrl);
+          if (shortUrls.length > 4) setShortUrls(state => state.slice(0,2))
+          if (longUrls.length > 4) setShortUrls(state => state.slice(0,2))
+          setShortUrls(state => [res.data.shortUrl, ...state]);
+          setLongUrls(state => [res.data.longUrl, ...state]);
         });
+
+        clearFields()
       } else {
         alert('invalid url');
       }
@@ -36,7 +41,6 @@ function App() {
 
   const clearFields = () => {
     setUrlInput('');
-    setShortUrl(null);
   };
 
   return (
@@ -62,13 +66,44 @@ function App() {
           </div>
 
           <div className="clear-fields-container">
-            <button onClick={() => clearFields()} id="clear-fields">
-              Clear Fields
-            </button>
+          <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => clearFields()} 
+              startIcon={<CropFreeIcon />}
+              id="clear-fields">
+              Clear Entry
+            </Button>
           </div>
 
           <div className="short-url-container">
-            <p>{shortUrl}</p>
+            {!(shortUrls === undefined || shortUrls.length == 0) && 
+            <>
+            <div>
+         
+            <p>
+              Short Url: {shortUrls[0]}
+              shorturl length: {shortUrls.length}
+            </p>
+            <p>
+              Long Url: {longUrls[0]}
+              longurl length: {longUrls.length}
+            </p>
+            </div>
+
+            <div className='recent-urls-container'>
+            {!(shortUrls === undefined || shortUrls.length < 2) && 
+            <>
+            {shortUrls.map(shortUrl => (
+              <>
+              {shortUrl}
+              </>
+            ))}
+            </>
+            }
+            </div>
+            </>
+            }
           </div>
         </Route>
       </Switch>

@@ -8,13 +8,14 @@
 }
 
 #url-input {
-  border: 2px solid #fff;
+  border: 2px solid #000000;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   outline: none;
   font-size: 1.2rem;
   width: 200px;
   height: 40px;
+  padding: 0rem .5rem;
 }
 
 #url-input:focus {
@@ -32,4 +33,13 @@
 }
 
 #clear-fields {
+  
+}
+
+.short-url-container{
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
