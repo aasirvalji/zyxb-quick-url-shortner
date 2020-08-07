@@ -145,7 +145,7 @@ function App() {
 
             <div className='recent-urls-container'>
             {!(shortUrls === undefined || shortUrls.length < 2) && 
-            <div className='recent-content'>
+            <div>
             {shortUrls.map((shortUrl, index) => (
               <>
               {index > 0 && 
