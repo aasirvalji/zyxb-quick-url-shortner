@@ -41,10 +41,14 @@
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.65), 0 15px 12px rgba(0, 0, 0, 0.55);
 }
 
-.icon:hover i {
-  transform: scale(1.8);
-  transition: 1.5s;
+#person-icon{
+  font-size: .2rem;
 }
+
+a{
+  color: inherit;
+}
+
 
 @media only screen and (max-width: 670px) {
 }

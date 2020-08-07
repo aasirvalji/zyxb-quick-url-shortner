@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { set } from 'mongoose';
 import Heading from './components/Heading/Heading';
 
-//material ui imports
 import Button from '@material-ui/core/Button';
 import CropFreeIcon from '@material-ui/icons/CropFree';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -45,10 +42,10 @@ function App() {
 
         clearFields()
       } else {
-        alert('invalid url');
+        alert('Sorry, thats an invalid url');
       }
     } else {
-      alert('empty url');
+      alert('Empty input, please add a url');
     }
   };
 
@@ -153,7 +150,6 @@ function App() {
             <div className='first-short-url-and-copy'>
             <p>
               Short Url: <b>{shortUrl}</b>
-              {/* shorturl length: {shortUrls.length} */}
             </p>
             <Button
               variant="contained"
@@ -169,7 +165,6 @@ function App() {
             <div className='long-short-url' id={index === shortUrls.length - 1 ? 'last-recent-url' : ''}>
             <p>
               Long Url: <b>{longUrls[index]}</b>
-              {/* longurl length: {longUrls.length} */}
             </p>
             </div>
             {(index < shortUrls.length - 1) && <Divider style={{backgroundColor: 'white'}} className='divider'/>}

@@ -1,3 +1,7 @@
+body{
+  background-image: url(./assets/backgrounds/test.png);
+}
+
 .main-container{
   width: 60%;
   max-width: 1000px;
@@ -87,13 +91,9 @@
  padding-bottom: .5rem;
 }
 
-/* start create spacing inside resulting child divs */
-/* .result-content{
-  margin: .5rem 0rem .7rem 0rem;
+.recent-urls-container{
+  margin-bottom: 3rem;
 }
- */
-
-/* end create spacing inside resulting child divs */
 
 @media only screen and (max-width: 1100px){
   #url-input {
