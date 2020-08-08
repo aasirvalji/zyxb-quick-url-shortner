@@ -11,7 +11,7 @@ dotenv.config({ path: path.resolve(__dirname, '../../config/config.env') });
 
 router.post('/shorten', async (req, res) => {
   var longUrl = req.body.url;
-  var baseUrl = process.env.devUrl;
+  var baseUrl = process.env.prodUrl;
   var idRegenerationAttempts = 0;
 
   if (!validUrl.isUri(baseUrl))
