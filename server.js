@@ -10,7 +10,8 @@ const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 const dotenv = require('dotenv');
 
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+// Load env vars
+dotenv.config({ path: './config/config.env' });
 
 const app = express();
 

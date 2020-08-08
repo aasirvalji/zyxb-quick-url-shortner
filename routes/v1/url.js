@@ -7,11 +7,11 @@ const shortid = require('shortid');
 const Url = require('../../models/Url');
 const { nanoid } = require('nanoid');
 
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../../config/config.env') });
 
 router.post('/shorten', async (req, res) => {
   var longUrl = req.body.url;
-  var baseUrl = process.env.prodUrl;
+  var baseUrl = process.env.devUrl;
   var idRegenerationAttempts = 0;
 
   if (!validUrl.isUri(baseUrl))
