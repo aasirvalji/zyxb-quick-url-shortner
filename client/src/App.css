@@ -4,7 +4,7 @@ body{
 
 .main-container{
   width: 60%;
-  max-width: 1000px;
+  max-width: 1400px;
   margin: auto;
   text-align: center;
   color: white;
@@ -51,6 +51,7 @@ body{
 
 .result-container{
   width: 55%;
+  max-width: 1400px;
   margin: auto;
   text-align: center;
   color: white;
