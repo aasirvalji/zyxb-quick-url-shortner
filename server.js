@@ -36,18 +36,17 @@ app.use('/', require('./routes/v1'));
 // create resource route
 app.use('/api/url', require('./routes/v1/url.js'));
 
-
 // Serve static assets in production
-if (process.env.environment === 'production') {
-  // Set static folder
-  app.use(express.static('client/build'));
+// if (process.env.environment === 'production') {
+// Set static folder
+app.use(express.static('client/build'));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
+// }
 
-  const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () =>
   console.log(`Server running on port ${PORT}`.green.underline)
